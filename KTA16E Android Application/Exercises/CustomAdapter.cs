@@ -1,8 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 using Android.App;
+using Android.Content;
+using Android.OS;
+using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Java.Lang;
 
 namespace Exercises
 {
@@ -36,9 +43,13 @@ namespace Exercises
         {
             View view = convertView;
             if (view == null)
-                view = context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItem2, null);
-            view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = items[position].Name;
-            view.FindViewById<TextView>(Android.Resource.Id.Text2).Text = items[position].Kw.ToString();
+                view = context.LayoutInflater.Inflate(Resource.Layout.CustomView, null);
+            view.FindViewById<TextView>(Resource.Id.Text1).Text = items[position].Name;
+            view.FindViewById<TextView>(Resource.Id.Text2).Text = items[position].Kw.ToString();
+            view.FindViewById<TextView>(Resource.Id.Text3).Text = items[position].Model;
+            view.FindViewById<ImageView>(Resource.Id.imageView1).SetImageResource(items[position].ImageResourceId);
+
+
             return view;
         }
     }
